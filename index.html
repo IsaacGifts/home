@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isaac Gifts -  Digital Card</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --accent: #e74c3c;
+            --purple: #9b59b6;
+            --yellow: #f1c40f;
+            --orange: #e67e22;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --card-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            --card-radius: 20px;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .digital-card {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card-container {
+            perspective: 1000px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.4s, box-shadow 0.4s;
+            background: white;
+            overflow: hidden;
+            border: none;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .card-header {
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-top-left-radius: var(--card-radius) !important;
+            border-top-right-radius: var(--card-radius) !important;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .gradient-1 {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+        }
+        
+        .gradient-2 {
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+        
+        .gradient-3 {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        
+        .gradient-4 {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        
+        .gradient-5 {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+        }
+        
+        .gradient-6 {
+            background: linear-gradient(135deg, #a6c0fe 0%, #f68084 100%);
+        }
+        
+        .icon-circle {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.8rem;
+            color: white;
+        }
+        
+        .cta-button {
+            display: block;
+            padding: 15px 25px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            text-align: center;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            color: white;
+        }
+        
+        .email-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, #2980b9 100%);
+        }
+        
+        .call-btn {
+            background: linear-gradient(135deg, var(--secondary) 0%, #27ae60 100%);
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        
+        .social-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--light);
+            color: var(--primary);
+            transition: all 0.3s;
+            text-decoration: none;
+            font-size: 1.4rem;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: white;
+        }
+        
+        .yt-icon:hover { background: #FF0000; }
+        .ig-icon:hover { background: #E1306C; }
+        .tw-icon:hover { background: #1DA1F2; }
+        .li-icon:hover { background: #0077B5; }
+        .fb-icon:hover { background: #4267B2; }
+        .tg-icon:hover { background: #0088CC; }
+        .wa-icon:hover { background: #25D366; }
+        .pt-icon:hover { background: #BD081C; }
+        
+        .contact-info {
+            text-align: center;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--card-radius);
+            margin-top: 20px;
+        }
+        
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        
+        .impact-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .color-1 { color: #ff9a9e; }
+        .color-2 { color: #a1c4fd; }
+        .color-3 { color: #fad0c4; }
+        .color-4 { color: #84fab0; }
+        .color-5 { color: #d4fc79; }
+        
+        @media (max-width: 768px) {
+            .card {
+                margin-bottom: 20px;
+            }
+            
+            .logo-text {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container digital-card">
+       
+<!-- Header Card -->
+<div class="card-container mb-5">
+    <div class="card gradient-1">
+        <div class="card-body text-center py-5">
+
+            <!-- Logo Image -->
+            <img src="your-logo.png" alt="Isaac Gifts Logo" class="img-fluid mb-3" style="max-width:150px; border-radius:50%;">
+
+            <!-- Organization Name -->
+            <h1 class="logo-text">ISAAC GIFTS</h1>
+            <p class="tagline">Inspire • Serve • Assist All Communities — God's Invitation For True Salvation</p>
+            <p class="lead text-white mb-4">Join our volunteer community and make a difference today!</p>
+
+            <!-- Social Media Icons -->
+            <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+                <a href="https://www.youtube.com/@IsaacGifts" target="_blank" class="social-icon yt-icon"><i class="bi bi-youtube"></i></a>
+                <a href="https://www.instagram.com/IsaacGifts" target="_blank" class="social-icon ig-icon"><i class="bi bi-instagram"></i></a>
+                <a href="https://twitter.com/IsaacGifts" target="_blank" class="social-icon tw-icon"><i class="bi bi-twitter"></i></a>
+                <a href="https://www.linkedin.com/company/isaacgifts" target="_blank" class="social-icon li-icon"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.facebook.com/IsaacGiftsHq" target="_blank" class="social-icon fb-icon"><i class="bi bi-facebook"></i></a>
+                <a href="https://t.me/IsaacGifts" target="_blank" class="social-icon tg-icon"><i class="bi bi-telegram"></i></a>
+                <a href="https://wa.me/917418418885" target="_blank" class="social-icon wa-icon"><i class="bi bi-whatsapp"></i></a>
+                <a href="https://www.pinterest.com/IsaacGifts" target="_blank" class="social-icon pt-icon"><i class="bi bi-pinterest"></i></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+        <div class="row">
+            <!-- Quick Action Card -->
+            <div class="col-md-6 card-container">
+                <div class="card h-100 gradient-2">
+                    <div class="card-body text-center">
+                        <div class="icon-circle">
+                            <i class="bi bi-chat-dots"></i>
+                        </div>
+                        <h3 class="text-white">Get Involved Today!</h3>
+                        <p class="text-white">Join our volunteer team with just one click</p>
+                        
+                        <a href="mailto:isaacngo.in@gmail.com" class="cta-button email-btn">
+                            <i class="bi bi-envelope me-2"></i> Send us an Email
+                        </a>
+                        
+                        <a href="tel:+917418418885" class="cta-button call-btn">
+                            <i class="bi bi-telephone me-2"></i> Call Us Now
+                        </a>
+                        
+                        <a href="https://wa.me/917418418885" class="cta-button whatsapp-btn">
+                            <i class="bi bi-whatsapp me-2"></i> Message on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Card -->
+            <div class="col-md-6 card-container">
+                <div class="card h-100 gradient-3">
+                    <div class="card-body">
+                        <h3 class="text-dark"><i class="bi bi-info-circle me-2"></i>About Isaac Gifts</h3>
+                        <p class="text-dark">We are a community-driven organization dedicated to serving those in need through various outreach programs and volunteer efforts.</p>
+                        <p class="text-dark">Our mission is to bring hope and practical assistance to communities across India and beyond.</p>
+                        
+                        <div class="contact-info mt-4">
+                            <p><i class="bi bi-envelope me-2 color-1"></i> isaacngo.in@gmail.com</p>
+                            <p><i class="bi bi-telephone me-2 color-2"></i> +91 7418418885</p>
+                            <p><i class="bi bi-whatsapp me-2 color-4"></i> +91 7418418885</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- Social Media Card -->
+<div class="col-md-4 card-container">
+    <div class="card h-100 gradient-6">
+        <div class="card-body text-center">
+            <h4 class="text-white"><i class="bi bi-hash me-2"></i>Connect With Us</h4>
+            <p class="text-white">Follow us on social media to stay updated with our activities</p>
+            
+            <div class="social-bar">
+                <a href="https://www.youtube.com/@IsaacGifts" target="_blank" class="social-icon yt-icon"><i class="bi bi-youtube"></i></a>
+                <a href="https://www.instagram.com/IsaacGifts" target="_blank" class="social-icon ig-icon"><i class="bi bi-instagram"></i></a>
+                <a href="https://twitter.com/IsaacGifts" target="_blank" class="social-icon tw-icon"><i class="bi bi-twitter"></i></a>
+            </div>
+            
+            <div class="social-bar">
+                <a href="https://www.linkedin.com/in/IsaacGifts" target="_blank" class="social-icon li-icon"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.facebook.com/IsaacGiftsHq" target="_blank" class="social-icon fb-icon"><i class="bi bi-facebook"></i></a>
+                <a href="https://t.me/IsaacGifts" target="_blank" class="social-icon tg-icon"><i class="bi bi-telegram"></i></a>
+            </div>
+            
+            <div class="social-bar">
+                <a href="https://wa.me/917418418885"" target="_blank" class="social-icon wa-icon"><i class="bi bi-whatsapp"></i></a>
+                <a href="https://www.pinterest.com/IsaacGifts" target="_blank" class="social-icon pt-icon"><i class="bi bi-pinterest"></i></a>
+            </div>
+                                            
+        </div>
+    </div>
+</div>
+
+        <div class="row mt-4">
+            <!-- Programs Card -->
+			<!-- Programs Card -->
+<div class="col-md-12 card-container">
+    <div class="card h-100 gradient-4">
+        <div class="card-body">
+            <h4 class="text-dark mb-4"><i class="bi bi-card-checklist me-2"></i>Our Programs</h4>
+
+            <div class="row g-4">
+                <!-- Education -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-primary mb-3 mx-auto">
+                            <i class="bi bi-book text-white"></i>
+                        </div>
+                        <h6>Education Support</h6>
+                        <p class="small mb-0">Schools, scholarships, vocational training, and libraries</p>
+                    </div>
+                </div>
+
+                <!-- Healthcare -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-success mb-3 mx-auto">
+                            <i class="bi bi-heart-pulse text-white"></i>
+                        </div>
+                        <h6>Healthcare Initiatives</h6>
+                        <p class="small mb-0">Hospitals, medical camps, awareness & blood donation</p>
+                    </div>
+                </div>
+
+                <!-- Religious & Spiritual -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-warning mb-3 mx-auto">
+                            <i class="bi bi-peace text-white"></i>
+                        </div>
+                        <h6>Religious & Spiritual</h6>
+                        <p class="small mb-0">Worship places, pilgrimages, faith-based services</p>
+                    </div>
+                </div>
+
+                <!-- Social Welfare -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-danger mb-3 mx-auto">
+                            <i class="bi bi-people text-white"></i>
+                        </div>
+                        <h6>Social Welfare</h6>
+                        <p class="small mb-0">Support for poor, orphans, widows, elderly & differently-abled</p>
+                    </div>
+                </div>
+
+                <!-- Environmental -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-info mb-3 mx-auto">
+                            <i class="bi bi-tree text-white"></i>
+                        </div>
+                        <h6>Environmental Care</h6>
+                        <p class="small mb-0">Tree plantation, clean-up drives, water conservation</p>
+                    </div>
+                </div>
+
+                <!-- Cultural & Heritage -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-secondary mb-3 mx-auto">
+                            <i class="bi bi-brush text-white"></i>
+                        </div>
+                        <h6>Cultural & Heritage</h6>
+                        <p class="small mb-0">Preserving arts, music, literature, and traditions</p>
+                    </div>
+                </div>
+
+                <!-- Disaster Relief -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-dark mb-3 mx-auto">
+                            <i class="bi bi-life-preserver text-white"></i>
+                        </div>
+                        <h6>Disaster Relief</h6>
+                        <p class="small mb-0">Emergency aid, rehabilitation & resilience programs</p>
+                    </div>
+                </div>
+
+                <!-- Livelihood & Skill -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-primary mb-3 mx-auto">
+                            <i class="bi bi-tools text-white"></i>
+                        </div>
+                        <h6>Skill Development</h6>
+                        <p class="small mb-0">Vocational training, self-help groups, entrepreneurship</p>
+                    </div>
+                </div>
+
+                <!-- Research & Innovation -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-success mb-3 mx-auto">
+                            <i class="bi bi-lightbulb text-white"></i>
+                        </div>
+                        <h6>Research & Innovation</h6>
+                        <p class="small mb-0">Scientific, medical, and social research for public good</p>
+                    </div>
+                </div>
+
+                <!-- Women & Child Welfare -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm mb-3 mx-auto" style="background-color:#e83e8c;">
+                            <i class="bi bi-gender-female text-white"></i>
+                        </div>
+                        <h6>Women & Child Welfare</h6>
+                        <p class="small mb-0">Nutrition, safety, empowerment, and education programs</p>
+                    </div>
+                </div>
+
+                <!-- Rural Development -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="text-center p-3 h-100 bg-white rounded shadow-sm">
+                        <div class="icon-circle-sm bg-warning mb-3 mx-auto">
+                            <i class="bi bi-house-door text-white"></i>
+                        </div>
+                        <h6>Rural Development</h6>
+                        <p class="small mb-0">Infrastructure, agriculture support, and sustainable livelihoods</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                   
+                    <div class="text-center mt-4">
+                        <p class="text-white">Prefer to talk to someone directly?</p>
+                        <a href="tel:+917418418885" class="cta-button call-btn me-2 d-inline-block" style="width: auto;">
+                            <i class="bi bi-telephone me-2"></i> Call Us
+                        </a>
+                        <a href="https://wa.me/917418418885" class="cta-button whatsapp-btn d-inline-block" style="width: auto;">
+                            <i class="bi bi-whatsapp me-2"></i> WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Card -->
+        <div class="card-container mt-4">
+            <div class="card">
+                <div class="card-body text-center py-3">
+                    <p class="mb-0">www.isaacgifts.com | &copy; 2023 Isaac Gifts. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add animation to cards when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100 * index);
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
